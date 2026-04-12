@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Library | SciBites</title>
+    <meta name="description" content="Download chapter-wise PDF notes for Class 9 and Class 10 Science.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .notes-hero {
+            text-align: center;
+            padding: 4rem 5% 2rem;
+        }
+        .notes-hero h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent-physics), var(--accent-chem));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.8rem;
+        }
+        .notes-hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            padding: 2rem 5% 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .pdf-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pdf-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(139,92,246,0.07), transparent 60%);
+            pointer-events: none;
+        }
+        .pdf-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        .pdf-card.chem-card {
+            border-color: rgba(6,182,212,0.25);
+        }
+        .pdf-card.chem-card::before {
+            background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(6,182,212,0.07), transparent 60%);
+        }
+        .pdf-icon {
+            font-size: 2.8rem;
+        }
+        .pdf-card h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+        .pdf-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0;
+            flex: 1;
+        }
+        .pdf-open-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: var(--accent-physics);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        .pdf-open-btn:hover {
+            box-shadow: 0 8px 20px rgba(139,92,246,0.4);
+            transform: translateY(-2px);
+        }
+        .pdf-open-btn.chem { background: var(--accent-chem); }
+        .pdf-open-btn.chem:hover { box-shadow: 0 8px 20px rgba(6,182,212,0.4); }
+        .coming-soon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            cursor: default;
+        }
+        .section-divider {
+            text-align: center;
+            padding: 1.5rem 5% 0.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-divider h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-divider h2::before, .section-divider h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">SciBites 🧬</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="notes.html" class="active">Notes Library</a></li>
+            <li><a href="login.html" class="login-btn-nav">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="notes-hero animate-in">
+        <h1>📚 Notes Library</h1>
+        <p>Chapter-wise PDF notes for Class 9 & Class 10</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs" style="padding: 0 5%; margin-bottom: 1rem;">
+        <button class="filter-btn active" data-filter="all">All Classes</button>
+        <button class="filter-btn" data-filter="9">Class 9th</button>
+        <button class="filter-btn" data-filter="10">Class 10th</button>
+    </div>
+
+    <!-- Class 9 Section -->
+    <div class="section-divider" data-section="9">
+        <h2>Class 9th — Science Notes</h2>
+    </div>
+    <div class="pdf-grid" id="notes-grid">
+        <!-- Chapter 1 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📗</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 1</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 1. Open or download the PDF directly.</p>
+            <a href="Chapter 1.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="pdf-card chem-card" data-class="9">
+            <div class="pdf-icon">📘</div>
+            <span class="tag chem">Class 9 · Science</span>
+            <h3>Chapter 2</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 2. Open or download the PDF directly.</p>
+            <a href="Chapter 2.pdf" target="_blank" class="pdf-open-btn chem">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📙</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 3</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 3. Open or download the PDF directly.</p>
+            <a href="Chapter 3.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div class="pdf-card chem-card" data-class="9">
+            <div class="pdf-icon">📗</div>
+            <span class="tag chem">Class 9 · Science</span>
+            <h3>Chapter 4</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 4. Open or download the PDF directly.</p>
+            <a href="Chapter 4.pdf" target="_blank" class="pdf-open-btn chem">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📘</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 5</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 5. Open or download the PDF directly.</p>
+            <a href="Chapter 5.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 6 -->
+        <div class="pdf-card chem-card" data-class="9">
+            <div class="pdf-icon">📕</div>
+            <span class="tag chem">Class 9 · Science</span>
+            <h3>Chapter 6</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 6. Open or download the PDF directly.</p>
+            <a href="Chapter 6.pdf" target="_blank" class="pdf-open-btn chem">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 7 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📗</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 7</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 7. Open or download the PDF directly.</p>
+            <a href="Chapter 7.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 8 -->
+        <div class="pdf-card chem-card" data-class="9">
+            <div class="pdf-icon">📘</div>
+            <span class="tag chem">Class 9 · Science</span>
+            <h3>Chapter 8</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 8. Open or download the PDF directly.</p>
+            <a href="Chapter 8.pdf" target="_blank" class="pdf-open-btn chem">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 9 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📙</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 9</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 9. Open or download the PDF directly.</p>
+            <a href="Chapter 9.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 10 -->
+        <div class="pdf-card chem-card" data-class="9">
+            <div class="pdf-icon">📕</div>
+            <span class="tag chem">Class 9 · Science</span>
+            <h3>Chapter 10</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 10. Open or download the PDF directly.</p>
+            <a href="Chapter 10.pdf" target="_blank" class="pdf-open-btn chem">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 11 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📗</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 11</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 11. Open or download the PDF directly.</p>
+            <a href="Chapter 11.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 12 -->
+        <div class="pdf-card chem-card" data-class="9">
+            <div class="pdf-icon">📘</div>
+            <span class="tag chem">Class 9 · Science</span>
+            <h3>Chapter 12</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 12. Open or download the PDF directly.</p>
+            <a href="Chapter 12.pdf" target="_blank" class="pdf-open-btn chem">📄 Open PDF</a>
+        </div>
+
+        <!-- Chapter 13 -->
+        <div class="pdf-card" data-class="9">
+            <div class="pdf-icon">📙</div>
+            <span class="tag physics">Class 9 · Science</span>
+            <h3>Chapter 13</h3>
+            <p>Complete chapter notes for Class 9 Science – Chapter 13. Open or download the PDF directly.</p>
+            <a href="Chapter 13.pdf" target="_blank" class="pdf-open-btn">📄 Open PDF</a>
+        </div>
+    </div>
+
+    <!-- Class 10 Section -->
+    <div class="section-divider" data-section="10">
+        <h2>Class 10th — Science Notes</h2>
+    </div>
+    <div class="pdf-grid">
+        <!-- Class 10 Coming Soon -->
+        <div class="pdf-card chem-card" data-class="10">
+            <div class="pdf-icon">📕</div>
+            <span class="tag chem">Class 10 · Science</span>
+            <h3>Chapter 1 – Chemical Reactions</h3>
+            <p>Full notes on balancing equations, types of reactions and Conservation of Mass.</p>
+            <div class="coming-soon-btn">🔒 Coming Soon</div>
+        </div>
+
+        <div class="pdf-card" data-class="10">
+            <div class="pdf-icon">📒</div>
+            <span class="tag physics">Class 10 · Science</span>
+            <h3>Chapter 10 – Light</h3>
+            <p>Learn about reflection, refraction, lenses and the human eye with detailed notes.</p>
+            <div class="coming-soon-btn">🔒 Coming Soon</div>
+        </div>
+    </div>
+
+    <script>
+        // Read URL param to auto-filter class
+        const params = new URLSearchParams(window.location.search);
+        const classParam = params.get('class');
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const allCards = document.querySelectorAll('.pdf-card');
+        const sectionDividers = document.querySelectorAll('.section-divider');
+
+        function applyFilter(val) {
+            filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === val));
+
+            allCards.forEach(card => {
+                const show = val === 'all' || card.dataset.class === val;
+                card.closest('.pdf-grid') && (card.style.display = show ? 'flex' : 'none');
+                card.style.display = show ? 'flex' : 'none';
+            });
+
+            sectionDividers.forEach(div => {
+                const show = val === 'all' || div.dataset.section === val;
+                div.style.display = show ? 'block' : 'none';
+            });
+
+            // Hide empty grids
+            document.querySelectorAll('.pdf-grid').forEach(grid => {
+                const visible = [...grid.querySelectorAll('.pdf-card')].some(c => c.style.display !== 'none');
+                grid.style.display = visible ? 'grid' : 'none';
+            });
+        }
+
+        filterBtns.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
+
+        if (classParam === '9' || classParam === '10') {
+            applyFilter(classParam);
+        } else {
+            applyFilter('all');
+        }
+
+        // Hover spotlight on cards
+        document.querySelectorAll('.pdf-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+                card.style.setProperty('--my', `${e.clientY - r.top}px`);
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
