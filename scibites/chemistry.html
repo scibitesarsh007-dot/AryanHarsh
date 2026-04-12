@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balancing Equations | SciBites Chemistry</title>
+    <meta name="description" content="Learn how to balance chemical equations with the simple sandwich analogy.">
+    <meta name="lesson-class" content="10">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="chem-page">
+    <nav>
+        <a href="index.html" class="logo">SciBites 🧬</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="physics.html">Physics Bites</a></li>
+            <li><a href="chemistry.html" class="active" style="color: var(--accent-chem);">Chem Bites</a></li>
+            <li><a href="login.html" class="login-btn-nav">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container animate-in">
+        <div class="lesson-wrapper chem">
+            <span class="tag chem">Chem Bite #1</span>
+            <h2>Balancing Equations: The Sandwich Rule 🥪</h2>
+            
+            <p>Have you ever seen a crazy chemical equation like <code>H₂ + O₂ &rarr; H₂O</code> and thought, "Wait... where did the second oxygen atom go?"</p>
+            <p>You're absolutely right to be suspicious. Atoms aren't magicians; they can't just pull a disappearing act!</p>
+
+            <div class="analogy-box">
+                <p><strong>The Rule of The Universe (Law of Conservation of Mass):</strong> You can't create stuff out of nowhere, and you can't destroy it. Whatever goes into the recipe MUST come out.</p>
+            </div>
+
+
+
+            <div id="notes-content" style="background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                <h3 style="margin-top:0; color: var(--accent-chem);">📝 Chemistry Class 10: Chemical Equations Notes</h3>
+                
+                <p><strong>1. The Core Principle</strong><br>
+                The Law of Conservation of Mass dictates that mass can neither be created nor destroyed in a chemical reaction. Therefore, the total mass of reactantsMUST equal the total mass of products.</p>
+                
+                <p><strong>2. Unbalanced Equation (Skeletal Equation)</strong><br>
+                Example: <code>H₂ + O₂ &rarr; H₂O</code><br>
+                This equation is physically impossible on its own because we lose one Oxygen atom on the right side.</p>
+                
+                <p><strong>3. Step-by-Step Balancing (The "Sandwich" Method)</strong><br>
+                - <strong>Step A:</strong> Check the ingredients (atoms) left vs right.<br>
+                - <strong>Step B:</strong> Find the unbalanced atom. Here, Oxygen has 2 on the left, but only 1 on the right.<br>
+                - <strong>Step C:</strong> Add a multiplier strictly to the FRONT of the molecules. (We put a '2' in front of H₂O). Now we have 2 Oxygen on the right. Perfect.<br>
+                - <strong>Step D:</strong> Re-check. Uh oh, now we have 4 Hydrogen on the right (2 x 2), but only 2 on the left!<br>
+                - <strong>Step E:</strong> Put a '2' in front of the Hydrogen on the left side to compensate. (2 H₂).</p>
+                
+                <p><strong>4. Final Balanced Equation</strong><br>
+                <code>2H₂ + O₂ &rarr; 2H₂O</code> (Everything is equal now!)</p>
+            </div>
+
+            <button onclick="downloadPDF()" class="button chem-btn" style="margin-top: 2rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                📥 Download Notes as PDF
+            </button>
+
+            <script>
+                function downloadPDF() {
+                    const content = document.getElementById('notes-content');
+                    // Give notes white text for better PDF rendering on dark BG, or apply specific styling
+                    content.style.background = '#ffffff'; 
+                    content.style.color = '#000000';
+                    const opt = {
+                        margin:       1,
+                        filename:     'Class10_Chemistry_Notes.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 2 },
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    };
+                    
+                    html2pdf().set(opt).from(content).save().then(() => {
+                        // Revert styles after download
+                        content.style.background = 'rgba(255,255,255,0.02)';
+                        content.style.color = '';
+                    });
+                }
+            </script>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SciBites</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">SciBites 🧬</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#library">Notes Library</a></li>
+            <li><a href="login.html" class="login-btn-nav active">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="login-container animate-in">
+        <div class="login-card">
+            <h2>Welcome Back, Scientist! 🧪</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="class">I am in:</label>
+                    <select id="class" name="class" required>
+                        <option value="9">Class 9th</option>
+                        <option value="10">Class 10th</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="email">Student Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@school.edu" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="button" style="width: 100%; margin-top: 1rem;">Log In to SciBites</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

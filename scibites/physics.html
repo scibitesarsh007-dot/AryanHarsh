@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton's First Law | SciBites Physics</title>
+    <meta name="description" content="Learn Newton's First Law using everyday analogies like riding a skateboard.">
+    <meta name="lesson-class" content="9">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="physics-page">
+    <nav>
+        <a href="index.html" class="logo">SciBites 🧬</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="physics.html" class="active" style="color: var(--accent-physics);">Physics Bites</a></li>
+            <li><a href="chemistry.html">Chem Bites</a></li>
+            <li><a href="login.html" class="login-btn-nav">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container animate-in">
+        <div class="lesson-wrapper">
+            <span class="tag physics">Physics Bite #1</span>
+            <h2>Newton's First Law: The "Lazy" Law 🛹</h2>
+            
+            <p>Imagine you're coasting down the street on your skateboard. Life is good. The wind is in your hair. Suddenly—<strong>BAM!</strong> The front wheels hit a stubborn rock.</p>
+            <p>The skateboard stops dead in its tracks. But what about you? <strong>You keep flying forward</strong> (hopefully into some soft grass!).</p>
+
+            <div id="notes-content" style="background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                <h3 style="margin-top:0;">📝 Physics Class 9: Newton's First Law Notes</h3>
+                <p><strong>1. What is the Law?</strong><br>
+                Also known as the Law of Inertia. An object at rest stays at rest, and an object in motion stays in motion with the same speed and in the same direction, unless acted upon by an unbalanced force.</p>
+                
+                <p><strong>2. The "Laziness" Concept (Inertia)</strong><br>
+                Inertia is simply the resistance of any physical object to any change in its velocity. Think of it as "laziness." Heavier objects are "lazier" (they have more inertia) than lighter objects.</p>
+                
+                <p><strong>3. The Skateboard Example Breakdown</strong><br>
+                - When you ride a skateboard, both you and the board are in motion.<br>
+                - A rock stops the board (an unbalanced force is applied to the board).<br>
+                - No force stopped YOU. Therefore, your body's inertia keeps you moving forward, launching you off the board!</p>
+                
+                <p><strong>4. Other Easy Real-Life Examples</strong><br>
+                - Dusting a carpet: Beating the carpet moves the carpet, but the dust's inertia keeps it in place, separating it.<br>
+                - Bus starting suddenly: You fall backward because your body wants to stay at rest while the bus moves forward.</p>
+            </div>
+            
+            <button onclick="downloadPDF()" class="button" style="margin-top: 2rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                📥 Download Notes as PDF
+            </button>
+
+            <script>
+                function downloadPDF() {
+                    const content = document.getElementById('notes-content');
+                    const originalBg = content.style.background;
+                    const originalColor = content.style.color;
+                    
+                    content.style.background = '#ffffff';
+                    content.style.color = '#000000';
+                    
+                    const opt = {
+                        margin:       1,
+                        filename:     'Class9_Physics_Notes.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 2 },
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    };
+                    
+                    html2pdf().set(opt).from(content).save().then(() => {
+                        content.style.background = originalBg;
+                        content.style.color = originalColor;
+                    });
+                }
+            </script>
+
+            <h3>Why did that happen?</h3>
+            <div class="analogy-box">
+                <p><strong>The Golden Rule:</strong> Objects are totally lazy. They just want to keep doing whatever they are already doing.</p>
+            </div>
+            
+            <p>If an object is sitting still, it lazily wants to stay sitting still. If it is moving, it lazily wants to keep moving in a straight line forever.</p>
+            <p>The <em>only</em> way to change that is if a <strong>force</strong> (a push or a pull) messes with it.</p>
+
+            <h3>Let's break down the Skateboard disaster:</h3>
+            <ul>
+                <li><strong>The Skateboard:</strong> Was moving. The rock applied a force (a push backwards), so the skateboard stopped.</li>
+                <li><strong>You:</strong> Were moving. The rock hit the skateboard, but <em>not you</em>. Since no force stopped you, your body "lazily" wanted to keep doing what it was doing: moving forward!</li>
+            </ul>
+
+            <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; margin-top: 3rem;">
+                <p style="margin: 0;"><strong>Science Word Alert 🚨:</strong> This "laziness" of objects is called <strong style="color: var(--accent-physics); font-size: 1.2rem;">Inertia</strong>.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
