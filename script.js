@@ -4,27 +4,70 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------
     const userClass = localStorage.getItem("sciBiteClass");
     
-    // Page access restriction
+    // Page access restriction removed as per user request
+    /*
     const lessonMeta = document.querySelector('meta[name="lesson-class"]');
     if (lessonMeta && userClass) {
-        if (lessonMeta.content !== userClass) {
-            alert(`You are logged in as Class ${userClass}. Access to Class ${lessonMeta.content} topics is restricted.`);
-            window.location.href = "index.html";
-        }
+        if (lessonMeta.content !== userClass) { ... }
     }
+    */
     
     // Auth state UI updates
-    const navLoginBtns = document.querySelectorAll(".login-btn-nav");
-    if (userClass) {
-        navLoginBtns.forEach(btn => {
-            btn.textContent = "Logout";
-            btn.href = "#";
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                localStorage.removeItem("sciBiteClass");
-                window.location.reload();
+    const navLinks = document.querySelector(".nav-links");
+    const navLoginBtn = document.querySelector(".login-btn-nav");
+    
+    if (localStorage.getItem("sciBiteLoggedIn") === "true") {
+        if (navLoginBtn) {
+            // Replace login button with user profile icon
+            const userProfile = document.createElement("div");
+            userProfile.className = "user-profile animate-in";
+            userProfile.id = "user-profile-btn";
+            userProfile.innerHTML = `
+                <span class="user-icon">👤</span>
+                <span class="user-name">Student</span>
+            `;
+            
+            navLoginBtn.parentNode.replaceChild(userProfile, navLoginBtn);
+            
+            userProfile.addEventListener("click", () => {
+                showLogoutModal();
             });
-        });
+        }
+    }
+
+    function showLogoutModal() {
+        // Create modal structure if it doesn't exist
+        let modal = document.getElementById("logout-modal");
+        if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "logout-modal";
+            modal.className = "modal-overlay";
+            modal.innerHTML = `
+                <div class="modal-card">
+                    <span class="modal-icon">👋</span>
+                    <h3>Ready to Leave?</h3>
+                    <p>Are you sure you want to logout? You'll need to login again to see your progress.</p>
+                    <div class="modal-btns">
+                        <button class="modal-btn modal-btn-cancel" id="logout-cancel">Stay Here</button>
+                        <button class="modal-btn modal-btn-confirm" id="logout-confirm">Logout</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById("logout-cancel").addEventListener("click", () => {
+                modal.classList.remove("show");
+            });
+
+            document.getElementById("logout-confirm").addEventListener("click", () => {
+                localStorage.removeItem("sciBiteLoggedIn");
+                localStorage.removeItem("sciBiteClass");
+                window.location.href = "index.html";
+            });
+        }
+        
+        // Final trigger for animation
+        setTimeout(() => modal.classList.add("show"), 10);
     }
 
     // Handle Login Form Submission
@@ -32,10 +75,37 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const classSelect = document.getElementById("class");
-            localStorage.setItem("sciBiteClass", classSelect.value);
-            window.location.href = "index.html";
+            
+            // Set login flags
+            localStorage.setItem("sciBiteLoggedIn", "true");
+            localStorage.setItem("sciBiteClass", "all"); // Default to all access
+            
+            showToast("Success! You have logged in successfully. 🧪");
+            
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2000);
         });
+    }
+
+    // Toast Notification Helper
+    function showToast(message) {
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerHTML = `
+            <span class="toast-icon">✅</span>
+            <span class="toast-message">${message}</span>
+        `;
+        document.body.appendChild(toast);
+        
+        // Trigger show animation
+        setTimeout(() => toast.classList.add("show"), 100);
+        
+        // Remove after delay
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
     }
 
     // Glassmorphism hover spotlight for lesson cards
@@ -60,13 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let initialFilter = "all";
         if (userClass) {
             initialFilter = userClass;
-            // Hide filter buttons that don't match user class to strictly lock them via UI
-            filterBtns.forEach(btn => {
-                const val = btn.getAttribute("data-filter");
-                if(val !== userClass && val !== "all") {
-                    btn.style.display = "none";
-                }
-            });
+
         }
         
         const applyFilter = (filterValue) => {

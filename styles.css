@@ -658,3 +658,204 @@ th {
     max-width: 100%;
   }
 }
+
+/* User Profile Icon */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(139, 92, 246, 0.15);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-profile:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: var(--accent-physics);
+}
+
+.user-icon {
+  font-size: 1.2rem;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Enhanced Toast Notification */
+.toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, rgba(11, 15, 25, 0.95), rgba(30, 41, 59, 0.95));
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(6, 182, 212, 0.5);
+  padding: 1.2rem 2.5rem;
+  border-radius: 20px;
+  color: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  box-shadow: 
+    0 20px 50px rgba(0,0,0,0.6),
+    0 0 20px rgba(6, 182, 212, 0.2);
+  transform: translateX(140%) scale(0.9);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  overflow: hidden;
+}
+
+.toast::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-physics), var(--accent-chem));
+  animation: toastProgress 3s linear forwards;
+}
+
+@keyframes toastProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.toast.show {
+  transform: translateX(0) scale(1);
+}
+
+.toast-icon {
+  font-size: 1.8rem;
+  background: rgba(6, 182, 212, 0.15);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: var(--accent-chem);
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
+}
+
+.toast-message {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, #fff, #cbd5e1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 32px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.modal-overlay.show .modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  animation: pulseLogout 2s infinite;
+}
+
+@keyframes pulseLogout {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(139,92,246,0.5)); }
+  100% { transform: scale(1); }
+}
+
+.modal-card h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.modal-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.modal-btn {
+  padding: 1rem 2.2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.modal-btn-confirm {
+  background: var(--accent-physics);
+  color: white;
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+}
+
+.modal-btn-confirm:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(139, 92, 246, 0.5);
+}
+
+.modal-btn-cancel {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid var(--card-border);
+}
+
+.modal-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+
