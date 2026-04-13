@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             userProfile.id = "user-profile-btn";
             userProfile.innerHTML = `
                 <span class="user-icon">👤</span>
-                <span class="user-name">Student</span>
+                <span class="user-name">${localStorage.getItem("sciBiteName") || "Student"}</span>
             `;
             
             navLoginBtn.parentNode.replaceChild(userProfile, navLoginBtn);
@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("logout-confirm").addEventListener("click", () => {
                 localStorage.removeItem("sciBiteLoggedIn");
                 localStorage.removeItem("sciBiteClass");
+                localStorage.removeItem("sciBiteName");
                 window.location.href = "index.html";
             });
         }
@@ -77,10 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             
             // Set login flags
+            const name = document.getElementById("student-name").value;
             localStorage.setItem("sciBiteLoggedIn", "true");
+            localStorage.setItem("sciBiteName", name);
             localStorage.setItem("sciBiteClass", "all"); // Default to all access
             
-            showToast("Success! You have logged in successfully. 🧪");
+            showToast(`Success! Welcome, ${name}. 🧪`);
             
             setTimeout(() => {
                 window.location.href = "index.html";
